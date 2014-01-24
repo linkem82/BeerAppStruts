@@ -1,36 +1,29 @@
 package com.example.model;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.example.hibernate.HibernateUtil;
 
 public class BeerAdvisor {
 	
-	public List<String> getBeerBrands(String color) {
+	@SuppressWarnings("unchecked")
+	public List<Beer> getBeers(String color) {
 		
-		List<String> beerBrands = new ArrayList<String>();
-		
-		if(color.equals("Dark")) {
-			beerBrands.add("Gulden Draak");
-			beerBrands.add("Dogfish Head Raison d’Etre");
-			beerBrands.add("St. Bernardus Abt 12");
-		}
-		else if(color.equals("Brown")) {
-			beerBrands.add("Cigar City Mayan Espresso Bolita");
-			beerBrands.add("Funky Buddha No Crusts");
-			beerBrands.add("Cigar City Cubano-Style Espresso Brown Ale");
-		}
-		else if(color.equals("Amber")) {
-			beerBrands.add("Maine Beer Zoe");
-			beerBrands.add("AleSmith Evil Dead Red");
-			beerBrands.add("AleSmith My Bloody Valentine");
-		}
-		else {
-			beerBrands.add("Coors light");
-			beerBrands.add("Bud light");
-		}
-		return beerBrands;		
-		
+		List<Beer> beers;		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Transaction tx = session.beginTransaction();		
+		Query query = session.getNamedQuery("beers_of_same_type");
+		query.setString("color", color);
+		beers = query.list();
+		tx.commit();
+		//session.close();
+		// Shutting down the application
+		//HibernateUtil.shutdown();		
+		return beers;				
 		
 	}
-
 }

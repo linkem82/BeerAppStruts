@@ -17,8 +17,8 @@
 	<div class="row">
   		<div class="col-lg-9 col-offset-3">
 			<h2>The recommended beers are :</h2>
-			<c:forEach var='brand' items="${brands}" >
-				<c:out value='${brand}'/></br>
+			<c:forEach var='beer' items="${brands}" >
+				<c:out value='${beer.name}'/></br>
 			</c:forEach>
 		</div>
 	</div>	

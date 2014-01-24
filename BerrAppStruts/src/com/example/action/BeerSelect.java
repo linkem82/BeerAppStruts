@@ -1,7 +1,10 @@
-package com.example.web;
+package com.example.action;
 
 import java.util.List;
+
 import org.apache.struts2.ServletActionContext;
+
+import com.example.model.Beer;
 import com.example.model.BeerAdvisor;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.Validation;
@@ -11,13 +14,13 @@ public class BeerSelect extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	
 	private String beerColor;
-	private List<String> brands;
+	private List<Beer> brands;
 
-    public List<String> getBrands() {
+    public List<Beer> getBrands() {
 		return brands;
 	}
 
-	public void setBrands(List<String> brands) {
+	public void setBrands(List<Beer> brands) {
 		this.brands = brands;
 	}
 
@@ -39,7 +42,7 @@ public class BeerSelect extends ActionSupport {
 	public String execute() {
 		BeerAdvisor ba = new BeerAdvisor();			
 		//String color = (String) (ServletActionContext.getRequest()).getParameter("beerColor");
-		this.brands = ba.getBeerBrands(this.getBeerColor());
+		this.brands = ba.getBeers(this.getBeerColor());
 		//(ServletActionContext.getRequest()).setAttribute("brands", brands);
 		return SUCCESS;
 	}

@@ -4,5 +4,6 @@
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="beerSelect" class="com.example.web.BeerSelect"  />
+	<bean id="beerSelect" class="com.example.action.BeerSelect"  />
+	<bean id="userService" class="com.example.utility.UserServiceImpl"  />
 </beans>
