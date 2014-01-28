@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.example.model.Beer" table="BEERS">
+		<id name="id" column="ID_BEER">
+			<generator class="increment" />
+		</id>
+		<property name="name" column="NAME" />
+		<property name="type" column="TYPE" />
+	</class>
+	<query name="beers_of_same_type">
+		<![CDATA[select a from Beer a, BeerType b  where a.type = b.id and b.type=:color]]>
+	</query>
+</hibernate-mapping>
